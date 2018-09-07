@@ -12,11 +12,17 @@ var jsonParser = bodyParser.json();
 
 app.post('/todos', jsonParser , (req, res) => {
   //console.log(req.body);
+
   var todo = new Todo({
-    text: req.body.text
+    text: req.body.text,
+    completed: req.body.completed,
+    specialMessage: req.body.specialMessage
   });
 
+  //console.log('Dump request: ', JSON.stringify(todo, null,2));
+
   todo.save().then((doc) => {
+    console.log(doc);
     res.send(doc);
   }, (e) => {
     res.status(400).send(e);
@@ -26,6 +32,8 @@ app.post('/todos', jsonParser , (req, res) => {
 app.listen(3000, () => {
   console.log('Started listening on port 3000');
 });
+
+module.exports = {app};
 
 // var newTodo = new Todo({text:'Dinner at bernies'});
 //
