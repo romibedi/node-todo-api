@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 
 
 var app = express();
+const port = process.env.PORT || 3000;
 
 var jsonParser = bodyParser.json();
 
@@ -57,8 +58,8 @@ app.get('/todos/:id', (req, res) => {
     //console.log(e);
   })
 });
-app.listen(3000, () => {
-  console.log('Started listening on port 3000');
+app.listen(port, () => {
+  console.log(`Started listening on port ${port}`);
 });
 
 module.exports = {app};
